@@ -1615,7 +1615,36 @@
         .about-photo-wrap {
           position: static;
         }
+        /* AI Expertise — stack left panel above right content */
+        .ai-feature {
+          grid-template-columns: 1fr;
+          padding: 24px;
+          gap: 24px;
+        }
       }
+
+      @media (max-width: 768px) {
+        /* Selected Work — move links below content */
+        .proj-row {
+          grid-template-columns: 40px 1fr;
+          grid-template-rows: auto auto;
+          padding: 16px 18px;
+          gap: 10px 14px;
+        }
+        .proj-links {
+          grid-column: 1 / -1;
+          flex-direction: row;
+          justify-content: flex-start;
+          align-items: center;
+          flex-wrap: wrap;
+          gap: 8px;
+        }
+        /* Contact form buttons stack */
+        .form-btn-row {
+          flex-direction: column;
+        }
+      }
+
       @media (max-width: 600px) {
         .skills-grid,
         .ai-cards {
@@ -1626,6 +1655,67 @@
         }
         section {
           padding: 60px 0;
+        }
+        /* Tighten container padding on small phones */
+        .container {
+          padding: 0 16px;
+        }
+        /* AI feature tighter on small screens */
+        .ai-feature {
+          padding: 16px;
+          gap: 16px;
+        }
+        .ai-feature-head {
+          font-size: 15px;
+        }
+        .ai-feature-num {
+          font-size: 36px;
+        }
+        /* Project row tighter */
+        .proj-row {
+          padding: 14px 12px;
+          gap: 8px 10px;
+        }
+        .proj-num {
+          font-size: 16px;
+        }
+        .proj-name {
+          font-size: 13px;
+        }
+        .proj-desc {
+          font-size: 10px;
+        }
+        /* Hero tags wrap cleanly */
+        .hero-tags {
+          gap: 6px;
+        }
+        .hero-tag {
+          font-size: 9px;
+          padding: 4px 8px;
+        }
+        /* Stats row single column on very small */
+        .stats-row {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 420px) {
+        .proj-row {
+          grid-template-columns: 1fr;
+        }
+        .proj-num {
+          display: none;
+        }
+        .proj-links {
+          grid-column: 1 / -1;
+        }
+        .stats-row {
+          grid-template-columns: 1fr;
+        }
+        .form-btn-row .form-submit,
+        .btn-whatsapp {
+          font-size: 11px;
+          padding: 10px 12px;
         }
       }
     </style>
