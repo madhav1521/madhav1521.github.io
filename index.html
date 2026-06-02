@@ -1757,7 +1757,7 @@
               <p class="hero-bio">
                 I engineer products end-to-end &mdash; architecture, APIs,
                 frontend &amp; AI integrations, all from scratch. Currently a
-                <strong style="color: var(--acc)">Software Engineer at TatvaSoft (MNC)</strong>,
+                <strong style="color: var(--acc)">Software Engineer at TatvaSoft</strong>,
                 3+ years shipping production systems for international clients.
                 I live at the intersection of
                 <strong style="color: var(--acc2)">full-stack engineering</strong>,
@@ -1811,7 +1811,7 @@
                 </div>
                 <div class="pc-locs">
                   <div class="pc-loc">TatvaSoft &mdash; Ahmedabad, India</div>
-                  <div class="pc-loc">Software Engineer (MNC)</div>
+                  <div class="pc-loc">Software Engineer</div>
                   <div class="pc-loc">Open to PM Opportunities</div>
                 </div>
               </div>
@@ -1874,7 +1874,7 @@
               </p>
               <p class="about-para reveal">
                 Professionally, I'm a
-                <strong>Software Engineer at TatvaSoft (MNC)</strong>, where
+                <strong>Software Engineer at TatvaSoft</strong>, where
                 I've grown from intern to owning full-stack production systems
                 for international clients &mdash; an Australian airside
                 logistics platform, a real-time creative collaboration network,
@@ -2077,7 +2077,7 @@
                       margin-left: 8px;
                       vertical-align: middle;
                     "
-                    >PRODUCTION · MNC</span
+                    >PRODUCTION</span
                   >
                 </div>
                 <div class="proj-desc">
@@ -2448,7 +2448,7 @@
               <div class="tl-date">JULY 2025 &mdash; PRESENT</div>
               <div class="tl-role">Software Engineer</div>
               <div class="tl-company">
-                TatvaSoft &mdash; Ahmedabad, India (MNC)
+                TatvaSoft &mdash; Ahmedabad, India
               </div>
               <ul class="tl-desc">
                 <li>
@@ -2907,6 +2907,41 @@
           status.className = "form-status error";
         });
       }
+
+      // COUNT-UP ANIMATION
+      (function () {
+        function animateCount(el) {
+          var text   = el.textContent.trim();
+          var match  = text.match(/^(\d+)(\D*)$/);
+          if (!match) return;
+          var target = parseInt(match[1], 10);
+          var suffix = match[2];
+          var duration = 1400;
+          var start    = null;
+          function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+          function step(ts) {
+            if (!start) start = ts;
+            var progress = Math.min((ts - start) / duration, 1);
+            el.textContent = Math.floor(easeOut(progress) * target) + suffix;
+            if (progress < 1) requestAnimationFrame(step);
+            else el.textContent = target + suffix;
+          }
+          requestAnimationFrame(step);
+        }
+
+        var counters = document.querySelectorAll(".stat-num, .pcs-val");
+        var observed = new Set();
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting && !observed.has(entry.target)) {
+              observed.add(entry.target);
+              animateCount(entry.target);
+            }
+          });
+        }, { threshold: 0.4 });
+
+        counters.forEach(function (el) { io.observe(el); });
+      })();
 
       function openWhatsApp() {
         var name    = document.getElementById("cf-name").value.trim();
